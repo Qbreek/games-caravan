@@ -1,0 +1,50 @@
+<ng-container *ngIf="deals$ | async as deals; else loading">
+  <p-table responsiveLayout="stack" [value]="deals">
+    <ng-template pTemplate="header">
+      <tr>
+        <th><i class="pi pi-building"></i>&nbsp; Store</th>
+        <th><i class="pi pi-wallet"></i>&nbsp; Price</th>
+        <th><i class="pi pi-info-circle"></i> &nbsp; Title</th>
+        <th><i class="pi pi-calendar"></i> &nbsp; Release</th>
+        <th><i class="pi pi-star"></i> &nbsp; Reviews</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-deal>
+      <tr>
+        <!-- store info  -->
+        <td>placeholder</td>
+        <!-- sales price -->
+        <td class="price-col">
+          <span>{{ deal.salePrice }}$</span>
+          &nbsp;
+          <del>{{ deal.normalPrice }}$</del>
+          &nbsp;
+        </td>
+        <!-- game title with img and url by cheapshark -->
+        <td>
+          <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
+            <img src="{{ deal.thumb }}" alt="{{ deal.title }} image" width="auto" style="vertical-align: middle" />
+            &nbsp;
+            <span>{{ deal.title }}</span>
+          </a>
+        </td>
+        <!-- game release date -->
+        <td>
+          {{ deal.releaseDate * 1000 | date }}
+        </td>
+        <!-- steam reviews -->
+        <td class="hover"
+          [pTooltip]="toolTipMessage(deal.steamRatingPercent, deal.steamRatingCount, deal.steamRatingText)"
+          [ngClass]="styleReviewCol(deal.steamRatingPercent)">
+          {{ deal?.steamRatingText || "No data" }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</ng-container>
+<!-- loader -->
+<ng-template #loading>
+  <div class="loader">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+</ng-template>

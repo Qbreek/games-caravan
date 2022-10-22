@@ -1,0 +1,48 @@
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+tr:hover {
+  background-color: #272727;
+}
+
+.price-col {
+  span {
+    color: #a5d6a7;
+  }
+  del {
+    color: gray;
+  }
+}
+
+.steam-positive {
+  color: #66c0f4;
+}
+
+.steam-mixed {
+  color: #b79e74;
+}
+
+.steam-negative {
+  color: #974535;
+}
+
+.no-data {
+  color: gray;
+}
+
+.hover {
+  cursor: pointer;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+}
