@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, tap } from 'rxjs';
+import { map } from 'rxjs';
 import { ListOfDealsItem } from '../models/list-of-deals-item.model';
 
 @Injectable({
@@ -14,9 +14,11 @@ export class ListOfDealsService {
   public getListOfDeals(pageNumber: number) {
     return this.http
       .get<ListOfDealsItem[]>(
-        `https://www.cheapshark.com/api/1.0/deals?storeID=1&pageNumber=${pageNumber}`,
+        `https://www.cheapshark.com/api/1.0/deals?sortBy=Price&pageSize=60&pageNumber=${pageNumber}`,
         { observe: 'response' }
       )
       .pipe(map((res) => res.body));
   }
 }
+
+// `https://www.cheapshark.com/api/1.0/deals?storeID=1&pageNumber=${pageNumber}`,

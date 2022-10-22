@@ -10,7 +10,7 @@ import { ListOfDealsService } from '../../services/list-of-deals.service';
 })
 export class ListOfDealsWrapperComponent {
   public deals$: Observable<ListOfDealsItem[] | null> =
-    this.listOfDealsService.getListOfDeals(1);
+    this.listOfDealsService.getListOfDeals(0);
   public totalPages: number = 0;
 
   constructor(private listOfDealsService: ListOfDealsService) {}

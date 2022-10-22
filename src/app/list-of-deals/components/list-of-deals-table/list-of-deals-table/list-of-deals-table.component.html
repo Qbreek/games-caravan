@@ -4,15 +4,20 @@
       <tr>
         <th><i class="pi pi-building"></i>&nbsp; Store</th>
         <th><i class="pi pi-wallet"></i>&nbsp; Price</th>
-        <th><i class="pi pi-info-circle"></i> &nbsp; Title</th>
-        <th><i class="pi pi-calendar"></i> &nbsp; Release</th>
-        <th><i class="pi pi-star"></i> &nbsp; Reviews</th>
+        <th><i class="pi pi-info-circle"></i>&nbsp; Title</th>
+        <th><i class="pi pi-calendar"></i>&nbsp; Release</th>
+        <th><i class="pi pi-star"></i>&nbsp; Reviews</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-deal>
       <tr>
-        <!-- store info  -->
-        <td>placeholder</td>
+        <!-- store icon  -->
+        <td>
+          <img src="https://www.cheapshark.com/img/stores/icons/{{ deal.storeID - 1 }}.png" alt="store icon"
+            style="vertical-align: middle">
+          &nbsp;
+          <span>Steam</span>
+        </td>
         <!-- sales price -->
         <td class="price-col">
           <span>{{ deal.salePrice }}$</span>
@@ -23,7 +28,8 @@
         <!-- game title with img and url by cheapshark -->
         <td>
           <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
-            <img src="{{ deal.thumb }}" alt="{{ deal.title }} image" width="auto" style="vertical-align: middle" />
+            <img src="{{ deal.thumb }}" alt="{{ deal.title }} image" width="102px" height="39px"
+              style="vertical-align: middle" />
             &nbsp;
             <span>{{ deal.title }}</span>
           </a>

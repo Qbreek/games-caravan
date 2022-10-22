@@ -8,6 +8,7 @@ import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { TooltipModule } from 'primeng/tooltip';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     PaginatorModule,
     TooltipModule,
     ProgressSpinnerModule,
+    OverlayPanelModule,
   ],
   exports: [ListOfDealsWrapperComponent],
 })

@@ -10,6 +10,6 @@ export class PaginatorComponent {
   @Output() pageChanged: EventEmitter<number> = new EventEmitter();
 
   public paginate(event: any) {
-    this.pageChanged.emit(event.page + 1);
+    this.pageChanged.emit(event.page);
   }
 }
