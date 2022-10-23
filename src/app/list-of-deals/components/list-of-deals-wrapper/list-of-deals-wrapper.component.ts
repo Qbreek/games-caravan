@@ -11,10 +11,11 @@ import { ListOfDealsService } from '../../services/list-of-deals.service';
 })
 export class ListOfDealsWrapperComponent implements OnInit, OnDestroy {
   public deals: ListOfDealsItem[] = [];
-  public totalPages: number = 0;
   public loading = false;
   private destroy$: Subject<void> = new Subject();
-
+  private page = 0;
+  public throttle = 0;
+  public distance = 0;
   constructor(
     private listOfDealsService: ListOfDealsService,
     private activatedRoute: ActivatedRoute
@@ -25,19 +26,24 @@ export class ListOfDealsWrapperComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((params) => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        this.getListOfDeals(params['page'], params['sortBy'], params['desc']);
+        this.getListOfDeals(params['sortBy'], params['desc']);
       });
   }
 
-  private getListOfDeals(pageNumber: number, sortBy: string, desc: number) {
+  public getListOfDeals(sortBy?: string, desc?: number) {
+    if (sortBy === 'Price') {
+      this.deals = [];
+      this.page = 0;
+    }
     this.loading = true;
     this.listOfDealsService
-      .fetchListOfDeals(pageNumber, sortBy, desc)
+      .fetchListOfDeals(this.page, sortBy, desc)
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
-        this.deals = res;
+        this.deals.push(...res);
         this.loading = false;
       });
+    this.page++;
   }
 
   ngOnDestroy(): void {

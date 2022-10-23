@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListOfDealsItem } from 'src/app/list-of-deals/models/list-of-deals-item.model';
-
 @Component({
   selector: 'app-list-of-deals-table',
   templateUrl: './list-of-deals-table.component.html',
@@ -11,6 +10,7 @@ export class ListOfDealsTableComponent {
   // TODO: add error handling
   @Input() deals: ListOfDealsItem[] = [];
   @Input() isLoading!: boolean;
+
   private sortOrderDescending = false;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
@@ -25,17 +25,6 @@ export class ListOfDealsTableComponent {
     } else {
       return 'no-data';
     }
-  }
-
-  public toolTipMessage(
-    steamRatingPercent: number,
-    steamRatingCount: number,
-    steamRatingText: string
-  ) {
-    if (!steamRatingText) {
-      return 'We could not find any data';
-    }
-    return `${steamRatingPercent}% of the ${steamRatingCount} user reviews for this game are ${steamRatingText}`;
   }
 
   public sortByPriceClick() {

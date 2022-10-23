@@ -1,34 +1,44 @@
-:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
-  position: -webkit-sticky;
+@import "../../../shared/variables.scss";
+
+table {
+  border-collapse: collapse;
+  color: white;
+}
+
+thead {
   position: sticky;
   top: 0;
 }
 
-.top {
-  z-index: 200;
+th,
+td {
+  background-color: $gray;
+  padding: 1rem;
+  text-align: start;
+  border-bottom: 1px solid $light-gray;
 }
 
-a {
-  text-decoration: none;
-  color: white;
+span {
+  background-color: $gray;
 }
 
-tr:hover {
-  background-color: #272727;
+del {
+  background-color: $gray;
 }
 
 .price-col {
-  width: 10rem;
+  width: 8rem;
   span {
-    color: #a5d6a7;
+    color: $green;
   }
+
   del {
+    padding-left: 0.5em;
     color: gray;
   }
 }
 
 .store-icon-col {
-  width: 6rem;
   span {
     display: flex;
     justify-content: center;
@@ -36,29 +46,46 @@ tr:hover {
 }
 
 .game-title-img-col {
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: $gray;
+    text-decoration: none;
+    color: white;
+  }
+
   img {
     width: 102px;
     height: 39px;
-    vertical-align: middle;
   }
 }
 
 .steam-positive {
-  color: #66c0f4;
+  color: $steam-positive;
 }
 
 .steam-mixed {
-  color: #b79e74;
+  color: $steam-mixed;
 }
 
 .steam-negative {
-  color: #974535;
+  color: $steam-negative;
 }
 
 .no-data {
-  color: gray;
+  color: $light-gray;
 }
 
-.hover {
-  cursor: pointer;
+@media only screen and (max-width: 600px) {
+  th,
+  td {
+    padding: 0.5rem;
+  }
+  .game-title-img-col {
+    a {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
 }
