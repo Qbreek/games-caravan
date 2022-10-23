@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-paginator',
@@ -7,9 +8,21 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class PaginatorComponent {
   @Input() totalRecords: number = 0;
-  @Output() pageChanged: EventEmitter<number> = new EventEmitter();
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   public paginate(event: any) {
-    this.pageChanged.emit(event.page);
+    this.updateQueryParams('page', event.page);
+  }
+
+  // use this so the wrapper component can be informed of new requests
+  private updateQueryParams(queryName: string, value: string) {
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: {
+        [queryName]: value,
+      },
+      queryParamsHandling: 'merge',
+    });
   }
 }

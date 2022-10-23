@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { ListOfDealsItem } from '../../models/list-of-deals-item.model';
 import { ListOfDealsService } from '../../services/list-of-deals.service';
 
@@ -8,15 +9,39 @@ import { ListOfDealsService } from '../../services/list-of-deals.service';
   templateUrl: './list-of-deals-wrapper.component.html',
   styleUrls: ['./list-of-deals-wrapper.component.scss'],
 })
-export class ListOfDealsWrapperComponent {
-  public deals$: Observable<ListOfDealsItem[] | null> =
-    this.listOfDealsService.getListOfDeals(0);
+export class ListOfDealsWrapperComponent implements OnInit, OnDestroy {
+  public deals: ListOfDealsItem[] = [];
   public totalPages: number = 0;
+  public loading = false;
+  private destroy$: Subject<void> = new Subject();
 
-  constructor(private listOfDealsService: ListOfDealsService) {}
+  constructor(
+    private listOfDealsService: ListOfDealsService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
-  public onPageChange(page: number) {
-    window.scrollTo(0, 0);
-    this.deals$ = this.listOfDealsService.getListOfDeals(page);
+  ngOnInit(): void {
+    this.activatedRoute.queryParams
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((params) => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        this.getListOfDeals(params['page'], params['sortBy'], params['desc']);
+      });
+  }
+
+  private getListOfDeals(pageNumber: number, sortBy: string, desc: number) {
+    this.loading = true;
+    this.listOfDealsService
+      .fetchListOfDeals(pageNumber, sortBy, desc)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res) => {
+        this.deals = res;
+        this.loading = false;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

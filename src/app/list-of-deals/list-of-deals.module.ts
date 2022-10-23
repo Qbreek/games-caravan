@@ -9,6 +9,14 @@ import { PaginatorModule } from 'primeng/paginator';
 import { TooltipModule } from 'primeng/tooltip';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: ListOfDealsWrapperComponent,
+  },
+];
 
 @NgModule({
   declarations: [
@@ -23,6 +31,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     TooltipModule,
     ProgressSpinnerModule,
     OverlayPanelModule,
+    RouterModule.forChild(routes),
   ],
   exports: [ListOfDealsWrapperComponent],
 })

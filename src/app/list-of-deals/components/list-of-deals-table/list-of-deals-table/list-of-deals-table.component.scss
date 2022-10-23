@@ -4,6 +4,10 @@
   top: 0;
 }
 
+.top {
+  z-index: 200;
+}
+
 a {
   text-decoration: none;
   color: white;
@@ -14,11 +18,28 @@ tr:hover {
 }
 
 .price-col {
+  width: 10rem;
   span {
     color: #a5d6a7;
   }
   del {
     color: gray;
+  }
+}
+
+.store-icon-col {
+  width: 6rem;
+  span {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.game-title-img-col {
+  img {
+    width: 102px;
+    height: 39px;
+    vertical-align: middle;
   }
 }
 
@@ -40,9 +61,4 @@ tr:hover {
 
 .hover {
   cursor: pointer;
-}
-
-.loader {
-  display: flex;
-  justify-content: center;
 }

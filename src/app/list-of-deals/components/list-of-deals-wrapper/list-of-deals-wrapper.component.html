@@ -1,2 +1,2 @@
-<app-list-of-deals-table [deals$]="deals$"></app-list-of-deals-table>
-<app-paginator [totalRecords]="totalPages" (pageChanged)="onPageChange($event)"></app-paginator>
+<app-list-of-deals-table [deals]="deals" [isLoading]="loading"></app-list-of-deals-table>
+<app-paginator [totalRecords]="totalPages"></app-paginator>

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ListOfDealsItem } from 'src/app/list-of-deals/models/list-of-deals-item.model';
 
 @Component({
@@ -9,7 +9,11 @@ import { ListOfDealsItem } from 'src/app/list-of-deals/models/list-of-deals-item
 })
 export class ListOfDealsTableComponent {
   // TODO: add error handling
-  @Input() deals$!: Observable<ListOfDealsItem[] | null>;
+  @Input() deals: ListOfDealsItem[] = [];
+  @Input() isLoading!: boolean;
+  private sortOrderDescending = false;
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   public styleReviewCol(steamRatingPercent: number) {
     if (steamRatingPercent > 69) {
@@ -32,5 +36,22 @@ export class ListOfDealsTableComponent {
       return 'We could not find any data';
     }
     return `${steamRatingPercent}% of the ${steamRatingCount} user reviews for this game are ${steamRatingText}`;
+  }
+
+  public sortByPriceClick() {
+    this.updateQueryParams('Price');
+    this.sortOrderDescending = !this.sortOrderDescending;
+  }
+
+  // use this so the wrapper component can be informed of new requests
+  private updateQueryParams(value: string) {
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: {
+        sortBy: value,
+        desc: +this.sortOrderDescending,
+      },
+      queryParamsHandling: 'merge',
+    });
   }
 }
