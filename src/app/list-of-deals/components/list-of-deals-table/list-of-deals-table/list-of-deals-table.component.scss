@@ -10,6 +10,12 @@ thead {
   top: 0;
 }
 
+th:hover {
+  background-color: red;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
 th,
 td {
   background-color: $gray;
@@ -39,6 +45,9 @@ del {
 }
 
 .store-icon-col {
+  img {
+    border-radius: 50%;
+  }
   span {
     display: flex;
     justify-content: center;
@@ -46,6 +55,7 @@ del {
 }
 
 .game-title-img-col {
+  width: 35rem;
   a {
     display: flex;
     align-items: center;
@@ -59,6 +69,10 @@ del {
     width: 102px;
     height: 39px;
   }
+}
+
+.reviews-col {
+  width: 12rem;
 }
 
 .steam-positive {

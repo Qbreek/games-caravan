@@ -28,7 +28,7 @@
       <td>
         {{ deal.releaseDate * 1000 | date:'shortDate' }}
       </td>
-      <td [ngClass]="styleReviewCol(+deal.steamRatingPercent)">
+      <td [ngClass]="styleReviewCol(+deal.steamRatingPercent)" class="reviews-col">
         {{ deal?.steamRatingText || "No data" }}
       </td>
     </tr>
