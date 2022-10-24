@@ -1,19 +1,20 @@
-import { Component, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ListOfDealsItem } from 'src/app/list-of-deals/models/list-of-deals-item.model';
+
 @Component({
   selector: 'app-list-of-deals-table',
   templateUrl: './list-of-deals-table.component.html',
   styleUrls: ['./list-of-deals-table.component.scss'],
 })
 export class ListOfDealsTableComponent {
-  // TODO: add error handling
   @Input() deals: ListOfDealsItem[] = [];
   @Input() isLoading!: boolean;
+  @Output() tableSorted: EventEmitter<any> = new EventEmitter();
 
-  private sortOrderDescending = false;
-
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  private filterState = {
+    sortValue: '',
+    sortOrder: false,
+  };
 
   public styleReviewCol(steamRatingPercent: number) {
     if (steamRatingPercent > 69) {
@@ -27,20 +28,18 @@ export class ListOfDealsTableComponent {
     }
   }
 
-  public sortByPriceClick() {
-    this.updateQueryParams('Price');
-    this.sortOrderDescending = !this.sortOrderDescending;
+  public onTableSort(sortValue: string) {
+    this.checkFilterState(sortValue);
+    this.tableSorted.emit(this.filterState);
   }
 
-  // use this so the wrapper component can be informed of new requests
-  private updateQueryParams(value: string) {
-    this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      queryParams: {
-        sortBy: value,
-        desc: +this.sortOrderDescending,
-      },
-      queryParamsHandling: 'merge',
-    });
+  // if the new sort value is different than the previous, reset state
+  private checkFilterState(sortValue: string) {
+    if (sortValue !== this.filterState.sortValue) {
+      this.filterState.sortValue = sortValue;
+      this.filterState.sortOrder = false;
+    } else {
+      this.filterState.sortOrder = !this.filterState.sortOrder;
+    }
   }
 }

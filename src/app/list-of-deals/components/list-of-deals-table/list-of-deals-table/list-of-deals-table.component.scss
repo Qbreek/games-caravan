@@ -11,8 +11,8 @@ thead {
 }
 
 th:hover {
-  background-color: red;
-  transition: 0.5s ease-in-out;
+  color: $yellow; // TODO:change this to another color
+  transition: 0.2s ease-in-out;
   cursor: pointer;
 }
 
@@ -22,6 +22,10 @@ td {
   padding: 1rem;
   text-align: start;
   border-bottom: 1px solid $light-gray;
+}
+
+tr:hover {
+  background-color: $lighter-gray;
 }
 
 span {

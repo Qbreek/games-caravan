@@ -1,11 +1,11 @@
 <table>
   <thead>
     <tr>
-      <th>Store</th>
-      <th (click)="sortByPriceClick()">Price</th>
-      <th>Title</th>
-      <th>Release</th>
-      <th>Reviews</th>
+      <th><span>Store</span></th>
+      <th (click)="onTableSort('Price')">Price</th>
+      <th (click)="onTableSort('Title')">Title</th>
+      <th (click)="onTableSort('Release')">Release</th>
+      <th (click)="onTableSort('Reviews')">Reviews</th>
     </tr>
   </thead>
   <tbody>
