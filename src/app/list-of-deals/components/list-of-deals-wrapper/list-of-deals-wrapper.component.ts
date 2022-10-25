@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { FilterState } from '../../models/filter-state.model';
 import { ListOfDealsItem } from '../../models/list-of-deals-item.model';
 import { ListOfDealsService } from '../../services/list-of-deals.service';
 
@@ -12,9 +13,7 @@ import { ListOfDealsService } from '../../services/list-of-deals.service';
 export class ListOfDealsWrapperComponent implements OnInit, OnDestroy {
   // TODO: add error handling
   public deals: ListOfDealsItem[] = [];
-  public loading = false;
-  public throttle = 0;
-  public distance = 0;
+  public loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private page = 0;
   private destroy$: Subject<void> = new Subject();
 
@@ -24,57 +23,47 @@ export class ListOfDealsWrapperComponent implements OnInit, OnDestroy {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.activatedRoute.queryParams
       .pipe(takeUntil(this.destroy$))
       .subscribe((params) => {
-        this.getListOfDeals(
-          params['pageNumber'],
-          params['sortBy'],
-          params['desc']
-        );
+        this.getListOfDeals(params['sortBy'], params['desc']);
       });
   }
 
-  // sortBy?: string, desc?: number, pageNumber: number
-  public getListOfDeals(pageNumber: number, sortBy: string, desc: number) {
-    this.loading = true;
+  public getListOfDeals(sortBy: string, desc: string) {
+    this.loading$.next(true);
     this.listOfDealsService
-      .fetchListOfDeals(pageNumber, sortBy, desc)
+      .fetchListOfDeals(this.page.toString(), sortBy, desc)
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
         this.deals.push(...res);
-        this.loading = false;
+        this.loading$.next(false);
       });
   }
 
-  public updateQueryParams(value: any) {
-    window.scrollTo(0, 0);
+  public onTableSort(value: FilterState) {
     this.deals = [];
+    this.page = 0;
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: {
         sortBy: value.sortValue,
         desc: +value.sortOrder,
-        pageNumber: 0,
       },
       queryParamsHandling: 'merge',
     });
-    this.page = 0;
   }
 
-  public paginate() {
+  public onLoadMore() {
     this.page++;
-    this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      queryParams: {
-        pageNumber: this.page,
-      },
-      queryParamsHandling: 'merge',
-    });
+    const sortBy =
+      this.activatedRoute.snapshot.queryParamMap.get('sortBy') || 'Deal Rating';
+    const desc = this.activatedRoute.snapshot.queryParamMap.get('desc') || '0';
+    this.getListOfDeals(sortBy, desc);
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
   }

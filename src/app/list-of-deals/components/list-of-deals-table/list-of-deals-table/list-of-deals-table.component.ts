@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FilterState } from 'src/app/list-of-deals/models/filter-state.model';
 import { ListOfDealsItem } from 'src/app/list-of-deals/models/list-of-deals-item.model';
 
 @Component({
@@ -8,10 +9,9 @@ import { ListOfDealsItem } from 'src/app/list-of-deals/models/list-of-deals-item
 })
 export class ListOfDealsTableComponent {
   @Input() deals: ListOfDealsItem[] = [];
-  @Input() isLoading!: boolean;
   @Output() tableSorted: EventEmitter<any> = new EventEmitter();
 
-  private filterState = {
+  private filterState: FilterState = {
     sortValue: '',
     sortOrder: false,
   };
