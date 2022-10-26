@@ -1,4 +1,3 @@
-<!-- the table where we showcase tha data -->
 <app-list-of-deals-table [deals]="deals" (tableSorted)="onTableSort($event)">
 </app-list-of-deals-table>
-<app-load-more (loadMore)="onLoadMore()" [isLoading$]="loading$"></app-load-more>
+<app-load-more [isLoading$]="loading$" (loadMore)="onLoadMore()"></app-load-more>

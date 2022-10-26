@@ -1,5 +1,30 @@
-.wrapper {
+main {
   display: flex;
   justify-content: center;
   margin: auto;
+  width: 70%;
+}
+
+@media only screen and (max-width: 1420px) {
+  main {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 1225px) {
+  main {
+    width: 85%;
+  }
+}
+
+@media only screen and (max-width: 1170px) {
+  main {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 1090px) {
+  main {
+    width: 100%;
+  }
 }

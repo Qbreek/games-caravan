@@ -24,10 +24,7 @@ button {
 }
 
 i {
-  animation-name: spin;
-  animation-duration: 5000ms;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+  animation: spin 5000ms infinite linear;
 }
 
 @keyframes spin {

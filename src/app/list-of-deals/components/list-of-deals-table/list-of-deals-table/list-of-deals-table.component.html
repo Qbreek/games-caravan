@@ -1,7 +1,7 @@
 <table>
   <thead>
     <tr>
-      <th>
+      <th (click)="onTableSort('Store')">
         <div class="head-items-container">
           <span>Store</span>
           <i class="material-icons">storefront</i>
@@ -51,11 +51,18 @@
         </a>
       </td>
       <td>
-        {{ deal.releaseDate * 1000 | date:'shortDate' }}
+        <ng-container *ngIf="deal.releaseDate !== 0; else noData">
+          {{deal.releaseDate * 1000 | date : 'shortDate'}}
+        </ng-container>
       </td>
-      <td [ngClass]="styleReviewCol(+deal.steamRatingPercent)" class="reviews-col">
-        {{ deal?.steamRatingText || "No data" }}
+      <td [ngClass]="styleReviewCol(+deal.steamRatingPercent)">
+        {{ deal.steamRatingText || "No data" }}
       </td>
     </tr>
   </tbody>
 </table>
+
+<!-- reusable no data template -->
+<ng-template #noData>
+  <span class="no-data">No data</span>
+</ng-template>

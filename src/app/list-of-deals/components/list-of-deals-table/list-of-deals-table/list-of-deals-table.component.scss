@@ -3,6 +3,8 @@
 table {
   border-collapse: collapse;
   color: white;
+  table-layout: fixed;
+  width: 100%;
 }
 
 thead {
@@ -10,50 +12,68 @@ thead {
   top: 0;
 }
 
-.head-items-container {
-  display: flex;
-  align-items: center;
-  background-color: inherit;
-  gap: 1rem;
-}
-
-th:hover {
-  i {
-    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97);
-  }
-  cursor: pointer;
-}
-
 th,
 td {
   background-color: $gray;
-  padding: 1rem;
-  text-align: start;
+  padding: 1rem; // change this for more space between rows
   border-bottom: 1px solid $light-gray;
 }
 
+// store col
+th:nth-child(1) {
+  width: 7%;
+}
+
+// price col
+th:nth-child(2) {
+  width: 10%;
+}
+
+// title col
+th:nth-child(3) {
+  width: 40%;
+}
+
+// date col
+th:nth-child(4) {
+  width: 10%;
+}
+
+// reviews col
+th:nth-child(5) {
+  width: 15%;
+}
+
 span {
-  background-color: $gray;
+  background-color: inherit;
 }
 
 del {
-  background-color: $gray;
+  background-color: inherit;
 }
 
-.price-col {
-  width: 5rem;
-  span {
-    color: $green;
-  }
+.head-items-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: inherit;
+  width: fit-content;
+  cursor: pointer;
+}
 
-  del {
-    padding-left: 0.5em;
-    color: gray;
+.head-items-container:hover {
+  color: $primary;
+  transition: color 500ms ease-in-out;
+
+  i {
+    color: $primary;
+    transition: color 500ms ease-in-out;
+    animation: move-up 0.4s;
+    position: relative;
   }
 }
 
 .store-icon-col {
-  width: 5rem;
   img {
     border-radius: 50%;
   }
@@ -63,15 +83,23 @@ del {
   }
 }
 
+.price-col {
+  span {
+    color: $secondary;
+  }
+
+  del {
+    color: gray;
+    padding-left: 0.5em;
+  }
+}
+
 .game-title-img-col {
-  width: 35rem;
   a {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    background-color: $gray;
-    text-decoration: none;
-    color: white;
+    gap: 1rem;
+    background-color: inherit;
   }
 
   img {
@@ -80,58 +108,28 @@ del {
   }
 }
 
-.reviews-col {
-  width: 12rem;
-}
-
 .steam-positive {
-  color: $steam-positive;
+  color: $info;
 }
 
 .steam-mixed {
-  color: $steam-mixed;
+  color: $warning;
 }
 
 .steam-negative {
-  color: $steam-negative;
+  color: $negative;
 }
 
 .no-data {
   color: $light-gray;
 }
 
-@media only screen and (max-width: 600px) {
-  th,
-  td {
-    padding: 0.5rem;
+@keyframes move-up {
+  0%,
+  100% {
+    bottom: 0;
   }
-  .game-title-img-col {
-    a {
-      flex-direction: column;
-      text-align: center;
-    }
-  }
-}
-
-@keyframes shake {
-  10%,
-  90% {
-    transform: translate3d(0, -5px, 0);
-  }
-
-  20%,
-  80% {
-    transform: translate3d(0, -5px, 0);
-  }
-
-  30%,
-  50%,
-  70% {
-    transform: translate3d(0, 5px, 0);
-  }
-
-  40%,
-  60% {
-    transform: translate3d(0, 5px, 0);
+  50% {
+    bottom: 0.5rem;
   }
 }

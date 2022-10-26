@@ -6,11 +6,9 @@ import { ListOfDealsItem } from '../models/list-of-deals-item.model';
   providedIn: 'root',
 })
 export class ListOfDealsService {
-  public totalPages = 0;
-
   constructor(private http: HttpClient) {}
 
-  public fetchListOfDeals(pageNumber: string, sortBy: string, desc: string) {
+  public fetchListOfDeals(pageNumber?: string, sortBy?: string, desc?: string) {
     const params = {
       pageNumber: pageNumber || '0',
       pageSize: '60',

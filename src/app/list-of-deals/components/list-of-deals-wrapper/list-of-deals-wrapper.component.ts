@@ -23,6 +23,7 @@ export class ListOfDealsWrapperComponent implements OnInit, OnDestroy {
     private router: Router
   ) {}
 
+  // sub to query params change and send GET calls wherever change is detected
   ngOnInit() {
     this.activatedRoute.queryParams
       .pipe(takeUntil(this.destroy$))
@@ -31,6 +32,7 @@ export class ListOfDealsWrapperComponent implements OnInit, OnDestroy {
       });
   }
 
+  // call GET method and set loading to true so we can inform child components
   public getListOfDeals(sortBy: string, desc: string) {
     this.loading$.next(true);
     this.listOfDealsService
@@ -42,6 +44,7 @@ export class ListOfDealsWrapperComponent implements OnInit, OnDestroy {
       });
   }
 
+  // on table sort clear the deals array and reset page, so we can make the correct call to cheapshark
   public onTableSort(value: FilterState) {
     this.deals = [];
     this.page = 0;
@@ -49,12 +52,13 @@ export class ListOfDealsWrapperComponent implements OnInit, OnDestroy {
       relativeTo: this.activatedRoute,
       queryParams: {
         sortBy: value.sortValue,
-        desc: +value.sortOrder,
+        desc: Number(value.sortOrder), // cast the boolean to a number
       },
       queryParamsHandling: 'merge',
     });
   }
 
+  // on load more increment the page number and fetch the next page from cheapshark using the persistent url query params
   public onLoadMore() {
     this.page++;
     const sortBy =
