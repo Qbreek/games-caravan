@@ -1,0 +1,130 @@
+@import "../../../shared/variables.scss";
+
+table {
+  border-collapse: collapse;
+  color: white;
+  table-layout: fixed;
+  width: 100%;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+}
+
+th,
+td {
+  background-color: $gray;
+  padding: 1rem; // change this for more space between rows
+  border-bottom: 1px solid $light-gray;
+}
+
+// store col
+th:nth-child(1) {
+  width: 7%;
+}
+
+// price col
+th:nth-child(2) {
+  width: 10%;
+}
+
+// title col
+th:nth-child(3) {
+  width: 40%;
+}
+
+// date col
+th:nth-child(4) {
+  width: 10%;
+}
+
+// reviews col
+th:nth-child(5) {
+  width: 15%;
+}
+
+span {
+  background-color: inherit;
+}
+
+del {
+  background-color: inherit;
+}
+
+.head-items-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: inherit;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.head-items-container:hover {
+  i {
+    animation: move-up 0.4s;
+    position: relative;
+  }
+}
+
+.store-icon-col {
+  img {
+    border-radius: 50%;
+  }
+  span {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.price-col {
+  span {
+    color: $secondary;
+  }
+
+  del {
+    color: gray;
+    padding-left: 0.5em;
+  }
+}
+
+.game-title-img-col {
+  a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: inherit;
+  }
+
+  img {
+    width: 102px;
+    height: 39px;
+  }
+}
+
+.steam-positive {
+  color: $info;
+}
+
+.steam-mixed {
+  color: $warning;
+}
+
+.steam-negative {
+  color: $negative;
+}
+
+.no-data {
+  color: $light-gray;
+}
+
+@keyframes move-up {
+  0%,
+  100% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 0.5rem;
+  }
+}

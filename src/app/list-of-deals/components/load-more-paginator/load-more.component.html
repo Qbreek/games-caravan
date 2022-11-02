@@ -1,0 +1,7 @@
+<button (click)="loadMoreClick()" [disabled]="isLoading$ | async">
+    <span *ngIf="!(isLoading$ | async)">Load more</span>
+    <div class="loader-wrapper" *ngIf="isLoading$ | async">
+        <span>Fetching the best deals</span>
+        <i class="material-icons">hourglass_empty</i>
+    </div>
+</button>
