@@ -52,6 +52,11 @@ del {
   background-color: inherit;
 }
 
+.row-item {
+  display: flex;
+  flex-direction: column;
+}
+
 .head-items-container {
   display: flex;
   align-items: center;
@@ -89,6 +94,10 @@ del {
   }
 }
 
+.price-col > div {
+  background-color: inherit;
+}
+
 .game-title-img-col {
   a {
     display: flex;
@@ -119,6 +128,16 @@ del {
   color: $light-gray;
 }
 
+.mobile {
+  display: none;
+}
+
+.mobile-price {
+  span {
+    color: white;
+  }
+}
+
 @keyframes move-up {
   0%,
   100% {
@@ -126,5 +145,45 @@ del {
   }
   50% {
     bottom: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .mobile {
+    display: flex;
+    background-color: inherit;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  a {
+    text-align: right;
+  }
+
+  a > img {
+    display: none;
+  }
+
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    display: none;
+  }
+
+  table tr {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  table td {
+    border: none;
+    display: flex;
+    justify-content: space-between;
   }
 }
