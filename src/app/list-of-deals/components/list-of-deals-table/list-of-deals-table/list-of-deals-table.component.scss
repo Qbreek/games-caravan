@@ -62,12 +62,7 @@ del {
 }
 
 .head-items-container:hover {
-  color: $primary;
-  transition: color 500ms ease-in-out;
-
   i {
-    color: $primary;
-    transition: color 500ms ease-in-out;
     animation: move-up 0.4s;
     position: relative;
   }
