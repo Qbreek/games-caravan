@@ -35,49 +35,40 @@
   </thead>
   <tbody>
     <tr *ngFor="let deal of deals">
+      <hr class="mobile">
       <td class="store-icon-col">
-        <div class="mobile">
-          <span>Store</span>
-          <i class="material-icons">storefront</i>
-        </div>
+        <i class="material-icons mobile">storefront</i>
         <span>
           <img src="https://www.cheapshark.com/img/stores/icons/{{ +deal.storeID - 1 }}.png" alt="store icon">
         </span>
       </td>
       <td class="price-col">
-        <div class="mobile mobile-price">
-          <span>Price</span>
-          <i class="material-icons">sell</i>
-        </div>
+        <i class="material-icons mobile">sell</i>
         <div>
           <span>{{ deal.salePrice }}$</span>
           <del>{{ deal.normalPrice }}$</del>
         </div>
       </td>
       <td class="game-title-img-col">
-        <div class="mobile">
-          <span>Title</span>
-          <i class="material-icons">sports_esports</i>
-        </div>
+        <i class="material-icons mobile">sports_esports</i>
         <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
           <img src="{{ deal.thumb }}" alt="{{ deal.title }} image" />
           <span>{{ deal.title }}</span>
         </a>
       </td>
       <td>
-        <div class="mobile">
-          <span>Date</span>
-          <i class="material-icons">calendar_month</i>
-        </div>
+        <i class="material-icons mobile">calendar_month</i>
         <ng-container *ngIf="deal.releaseDate !== 0; else noData">
           {{deal.releaseDate * 1000 | date : 'shortDate'}}
         </ng-container>
       </td>
       <td [ngClass]="styleReviewCol(+deal.steamRatingPercent)">
+        <i class="material-icons mobile">reviews</i>
         {{ deal.steamRatingText || "No data" }}
       </td>
     </tr>
   </tbody>
+  <hr class="mobile">
 </table>
 
 <!-- reusable no data template -->

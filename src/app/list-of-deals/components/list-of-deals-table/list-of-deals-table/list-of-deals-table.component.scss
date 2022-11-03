@@ -1,12 +1,13 @@
-@import "../../../shared/variables.scss";
+@import "../../../../shared/variables";
 
 table {
-  border-collapse: collapse;
   color: white;
   table-layout: fixed;
   width: 100%;
+  border-collapse: collapse;
 }
 
+// make the head of the table to scroll with the user
 thead {
   position: sticky;
   top: 0;
@@ -14,58 +15,61 @@ thead {
 
 th,
 td {
+  border-collapse: collapse;
   background-color: $gray;
-  padding: 1rem; // change this for more space between rows
+  padding: 1rem; // pretty crucial part, tables really are hard to style
   border-bottom: 1px solid $light-gray;
 }
 
+tr:hover {
+  background-color: $highlight-gray;
+}
+
+tr:hover td {
+  background-color: transparent; /* or #000 */
+}
+
+// here we specify the width for every entry in the table head
 // store col
 th:nth-child(1) {
   width: 7%;
 }
-
 // price col
 th:nth-child(2) {
   width: 10%;
 }
-
 // title col
 th:nth-child(3) {
   width: 40%;
 }
-
 // date col
 th:nth-child(4) {
   width: 10%;
 }
-
 // reviews col
 th:nth-child(5) {
   width: 15%;
 }
+// end of width for head items
 
-span {
+// inherit color otherwise these look ugly
+span,
+del,
+div,
+a {
   background-color: inherit;
 }
 
-del {
-  background-color: inherit;
-}
-
-.row-item {
-  display: flex;
-  flex-direction: column;
-}
-
+// place these into a div so we can center the text + icon
 .head-items-container {
   display: flex;
   align-items: center;
   gap: 1rem;
-  background-color: inherit;
   width: fit-content;
   cursor: pointer;
 }
 
+// and also set a little animation <3
 .head-items-container:hover {
   i {
     animation: move-up 0.4s;
@@ -94,21 +98,16 @@ del {
   }
 }
 
-.price-col > div {
-  background-color: inherit;
-}
-
 .game-title-img-col {
   a {
     display: flex;
     align-items: center;
     gap: 1rem;
-    background-color: inherit;
   }
 
   img {
-    width: 102px;
-    height: 39px;
+    width: 120px;
+    height: 45px;
   }
 }
 
@@ -132,9 +131,69 @@ del {
   display: none;
 }
 
-.mobile-price {
-  span {
-    color: white;
+hr {
+  border: 6px solid #121212;
+}
+
+@media screen and (max-width: 980px) {
+  .head-items-container > i {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .game-title-img-col {
+    a {
+      text-align: right;
+    }
+
+    a > img {
+      display: none;
+    }
+
+    a > span {
+      width: 15rem;
+    }
+  }
+
+  table tr {
+    display: block;
+  }
+
+  table td {
+    display: flex;
+    justify-content: space-between;
+    border: none;
+  }
+
+  // store col
+  th:nth-child(1) {
+    width: 100vw;
+  }
+  // price col
+  th:nth-child(2) {
+    width: 100vw;
+  }
+  // title col
+  th:nth-child(3) {
+    width: 100vw;
+  }
+  // date col
+  th:nth-child(4) {
+    width: 100vw;
+  }
+  // reviews col
+  th:nth-child(5) {
+    width: 100vw;
+  }
+}
+
+// just make the padding small so it works at a max width of 320px
+@media screen and (max-width: 356px) {
+  th {
+    padding: 0.7rem;
   }
 }
 
@@ -145,45 +204,5 @@ del {
   }
   50% {
     bottom: 0.5rem;
-  }
-}
-
-@media screen and (max-width: 980px) {
-  .mobile {
-    display: flex;
-    background-color: inherit;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  a {
-    text-align: right;
-  }
-
-  a > img {
-    display: none;
-  }
-
-  table {
-    border: 0;
-  }
-
-  table caption {
-    font-size: 1.3em;
-  }
-
-  table thead {
-    display: none;
-  }
-
-  table tr {
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  table td {
-    border: none;
-    display: flex;
-    justify-content: space-between;
   }
 }
