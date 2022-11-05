@@ -7,18 +7,21 @@ table {
   border-collapse: collapse;
 }
 
-// make the head of the table to scroll with the user
-thead {
-  position: sticky;
-  top: 0;
+tr > th {
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 1px;
+  background-color: #121212;
+  padding: 0;
+  height: 1.5rem;
 }
 
 th,
 td {
   border-collapse: collapse;
   background-color: $gray;
-  padding: 1rem; // pretty crucial part, tables really are hard to style
-  border-bottom: 1px solid $light-gray;
+  border-bottom: 3px solid #121212;
+  height: 3.8rem;
 }
 
 tr:hover {
@@ -30,26 +33,23 @@ tr:hover td {
 }
 
 // here we specify the width for every entry in the table head
-// store col
+// title col
 th:nth-child(1) {
-  width: 7%;
+  width: 50%;
 }
 // price col
 th:nth-child(2) {
-  width: 10%;
-}
-// title col
-th:nth-child(3) {
-  width: 40%;
-}
-// date col
-th:nth-child(4) {
-  width: 10%;
+  width: 6%;
 }
 // reviews col
-th:nth-child(5) {
+th:nth-child(3) {
   width: 15%;
 }
+// store col
+th:nth-child(4) {
+  width: 3%;
+}
+
 // end of width for head items
 
 // inherit color otherwise these look ugly
@@ -77,27 +77,6 @@ a {
   }
 }
 
-.store-icon-col {
-  img {
-    border-radius: 50%;
-  }
-  span {
-    display: flex;
-    justify-content: center;
-  }
-}
-
-.price-col {
-  span {
-    color: $secondary;
-  }
-
-  del {
-    color: gray;
-    padding-left: 0.5em;
-  }
-}
-
 .game-title-img-col {
   a {
     display: flex;
@@ -108,6 +87,31 @@ a {
   img {
     width: 120px;
     height: 45px;
+  }
+}
+
+.price-col {
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+  span {
+    color: $secondary;
+  }
+
+  del {
+    font-size: 0.8rem;
+    color: gray;
+  }
+}
+
+.store-icon-col {
+  img {
+    border-radius: 50%;
+  }
+  span {
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -182,10 +186,6 @@ hr {
   }
   // date col
   th:nth-child(4) {
-    width: 100vw;
-  }
-  // reviews col
-  th:nth-child(5) {
     width: 100vw;
   }
 }

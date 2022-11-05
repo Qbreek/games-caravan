@@ -2,73 +2,51 @@
   <thead>
     <tr>
       <th scope="col">
-        <div class="head-items-container" (click)="onTableSort('Store')">
-          <span>Store</span>
-          <i class="material-icons">storefront</i>
+        <div class="head-items-container" (click)="onTableSort('Title')">
+          <span>TITLE</span>
         </div>
       </th>
       <th>
         <div class="head-items-container" (click)="onTableSort('Price')">
-          <span>Price</span>
-          <i class="material-icons">sell</i>
-        </div>
-      </th>
-      <th scope="col">
-        <div class="head-items-container" (click)="onTableSort('Title')">
-          <span>Title</span>
-          <i class="material-icons">sports_esports</i>
-        </div>
-      </th>
-      <th scope="col">
-        <div class="head-items-container" (click)="onTableSort('Release')">
-          <span>Date</span>
-          <i class="material-icons">calendar_month</i>
+          <span>PRICE</span>
         </div>
       </th>
       <th scope="col">
         <div class="head-items-container" (click)="onTableSort('Reviews')">
-          <span>Reviews</span>
-          <i class="material-icons">reviews</i>
+          <span>REVIEWS</span>
+        </div>
+      </th>
+      <th scope="col">
+        <div class="head-items-container" (click)="onTableSort('Store')">
+          <span>STORE</span>
         </div>
       </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let deal of deals">
-      <hr class="mobile">
-      <td class="store-icon-col">
-        <i class="material-icons mobile">storefront</i>
-        <span>
-          <img src="https://www.cheapshark.com/img/stores/icons/{{ +deal.storeID - 1 }}.png" alt="store icon">
-        </span>
-      </td>
-      <td class="price-col">
-        <i class="material-icons mobile">sell</i>
-        <div>
-          <span>{{ deal.salePrice }}$</span>
-          <del>{{ deal.normalPrice }}$</del>
-        </div>
-      </td>
       <td class="game-title-img-col">
-        <i class="material-icons mobile">sports_esports</i>
         <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
           <img src="{{ deal.thumb }}" alt="{{ deal.title }} image" />
           <span>{{ deal.title }}</span>
         </a>
       </td>
-      <td>
-        <i class="material-icons mobile">calendar_month</i>
-        <ng-container *ngIf="deal.releaseDate !== 0; else noData">
-          {{deal.releaseDate * 1000 | date : 'shortDate'}}
-        </ng-container>
+      <td class="price-col">
+        <div>
+          <del>{{ deal.normalPrice }}$</del>
+          <span>{{ deal.salePrice }}$</span>
+        </div>
       </td>
-      <td [ngClass]="styleReviewCol(+deal.steamRatingPercent)">
-        <i class="material-icons mobile">reviews</i>
+      <td class="reviews-col" [ngClass]="styleReviewCol(+deal.steamRatingPercent)">
         {{ deal.steamRatingText || "No data" }}
+      </td>
+      <td class="store-icon-col">
+        <span>
+          <img src="https://www.cheapshark.com/img/stores/icons/{{ +deal.storeID - 1 }}.png" alt="store icon">
+        </span>
       </td>
     </tr>
   </tbody>
-  <hr class="mobile">
 </table>
 
 <!-- reusable no data template -->
