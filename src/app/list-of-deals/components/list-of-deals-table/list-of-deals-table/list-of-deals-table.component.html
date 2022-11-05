@@ -37,7 +37,7 @@
           <span>{{ deal.salePrice }}$</span>
         </div>
       </td>
-      <td [ngClass]="styleReviewCol(+deal.steamRatingPercent)">
+      <td class="reviews-col" [ngClass]="styleReviewCol(+deal.steamRatingPercent)">
         {{ deal.steamRatingText || "No data" }}
       </td>
       <td class="store-icon-col">

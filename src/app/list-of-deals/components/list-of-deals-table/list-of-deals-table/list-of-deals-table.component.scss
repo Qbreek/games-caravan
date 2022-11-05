@@ -33,19 +33,19 @@ tr:hover td {
 }
 
 // here we specify the width for every entry in the table head
-// store col
+// title col
 th:nth-child(1) {
   width: 50%;
 }
 // price col
 th:nth-child(2) {
-  width: 5%;
+  width: 6%;
 }
-// title col
+// reviews col
 th:nth-child(3) {
   width: 15%;
 }
-// date col
+// store col
 th:nth-child(4) {
   width: 3%;
 }
@@ -77,13 +77,16 @@ a {
   }
 }
 
-.store-icon-col {
-  img {
-    border-radius: 50%;
-  }
-  span {
+.game-title-img-col {
+  a {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  img {
+    width: 120px;
+    height: 45px;
   }
 }
 
@@ -102,16 +105,13 @@ a {
   }
 }
 
-.game-title-img-col {
-  a {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
+.store-icon-col {
   img {
-    width: 120px;
-    height: 45px;
+    border-radius: 50%;
+  }
+  span {
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -186,10 +186,6 @@ hr {
   }
   // date col
   th:nth-child(4) {
-    width: 100vw;
-  }
-  // reviews col
-  th:nth-child(5) {
     width: 100vw;
   }
 }
