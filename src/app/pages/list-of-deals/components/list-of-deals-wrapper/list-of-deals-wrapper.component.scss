@@ -1,0 +1,25 @@
+.title-filters-wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  section {
+    width: 80%;
+
+    h1 {
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+
+    p {
+      font-weight: 200;
+      margin-bottom: 2rem;
+      letter-spacing: 0.5px;
+    }
+
+    span {
+      letter-spacing: 1px;
+      font-weight: 500;
+    }
+  }
+}

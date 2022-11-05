@@ -1,0 +1,12 @@
+<div class="title-filters-wrapper">
+    <section>
+        <h1>List of deals</h1>
+        <p>Top deals found across the web, sorted by :
+            <span>{{sortValueTemplate | uppercase}} {{sortOrderTemplate |uppercase}}</span>
+        </p>
+    </section>
+    <app-table-filters></app-table-filters>
+</div>
+<app-list-of-deals-table [deals]="deals" (tableSorted)="onTableSort($event)">
+</app-list-of-deals-table>
+<app-load-more [isLoading$]="loading$" (loadMore)="onLoadMore()"></app-load-more>

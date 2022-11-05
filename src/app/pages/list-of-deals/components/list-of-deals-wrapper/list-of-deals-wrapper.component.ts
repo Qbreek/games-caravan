@@ -14,6 +14,8 @@ export class ListOfDealsWrapperComponent implements OnInit, OnDestroy {
   // TODO: add error handling
   public deals: ListOfDealsItem[] = [];
   public loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public sortValueTemplate: string = 'Deals Rating';
+  public sortOrderTemplate: string = '';
   private page = 0;
   private destroy$: Subject<void> = new Subject();
 
@@ -29,6 +31,9 @@ export class ListOfDealsWrapperComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((params) => {
         this.getListOfDeals(params['sortBy'], params['desc']);
+        this.sortValueTemplate = params['sortBy'] || 'Deal Rating';
+        this.sortOrderTemplate =
+          params['desc'] === '1' ? 'Descending' : 'Ascending';
       });
   }
 

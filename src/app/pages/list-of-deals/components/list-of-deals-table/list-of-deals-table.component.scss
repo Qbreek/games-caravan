@@ -139,70 +139,70 @@ hr {
   border: 6px solid #121212;
 }
 
-@media screen and (max-width: 980px) {
-  .head-items-container > i {
-    display: none;
-  }
+// @media screen and (max-width: 980px) {
+//   .head-items-container > i {
+//     display: none;
+//   }
 
-  .mobile {
-    display: block;
-  }
+//   .mobile {
+//     display: block;
+//   }
 
-  .game-title-img-col {
-    a {
-      text-align: right;
-    }
+//   .game-title-img-col {
+//     a {
+//       text-align: right;
+//     }
 
-    a > img {
-      display: none;
-    }
+//     a > img {
+//       display: none;
+//     }
 
-    a > span {
-      width: 15rem;
-    }
-  }
+//     a > span {
+//       width: 15rem;
+//     }
+//   }
 
-  table tr {
-    display: block;
-  }
+//   table tr {
+//     display: block;
+//   }
 
-  table td {
-    display: flex;
-    justify-content: space-between;
-    border: none;
-  }
+//   table td {
+//     display: flex;
+//     justify-content: space-between;
+//     border: none;
+//   }
 
-  // store col
-  th:nth-child(1) {
-    width: 100vw;
-  }
-  // price col
-  th:nth-child(2) {
-    width: 100vw;
-  }
-  // title col
-  th:nth-child(3) {
-    width: 100vw;
-  }
-  // date col
-  th:nth-child(4) {
-    width: 100vw;
-  }
-}
+//   // store col
+//   th:nth-child(1) {
+//     width: 100vw;
+//   }
+//   // price col
+//   th:nth-child(2) {
+//     width: 100vw;
+//   }
+//   // title col
+//   th:nth-child(3) {
+//     width: 100vw;
+//   }
+//   // date col
+//   th:nth-child(4) {
+//     width: 100vw;
+//   }
+// }
 
-// just make the padding small so it works at a max width of 320px
-@media screen and (max-width: 356px) {
-  th {
-    padding: 0.7rem;
-  }
-}
+// // just make the padding small so it works at a max width of 320px
+// @media screen and (max-width: 356px) {
+//   th {
+//     padding: 0.7rem;
+//   }
+// }
 
-@keyframes move-up {
-  0%,
-  100% {
-    bottom: 0;
-  }
-  50% {
-    bottom: 0.5rem;
-  }
-}
+// @keyframes move-up {
+//   0%,
+//   100% {
+//     bottom: 0;
+//   }
+//   50% {
+//     bottom: 0.5rem;
+//   }
+// }

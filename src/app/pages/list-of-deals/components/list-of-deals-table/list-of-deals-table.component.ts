@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FilterState } from 'src/app/list-of-deals/models/filter-state.model';
-import { ListOfDealsItem } from 'src/app/list-of-deals/models/list-of-deals-item.model';
+import { FilterState } from 'src/app/pages/list-of-deals/models/filter-state.model';
+import { ListOfDealsItem } from 'src/app/pages/list-of-deals/models/list-of-deals-item.model';
 
 @Component({
   selector: 'app-list-of-deals-table',
