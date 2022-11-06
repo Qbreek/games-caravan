@@ -5,7 +5,7 @@ import { ListOfDealsItem } from '../models/list-of-deals-item.model';
 @Injectable({
   providedIn: 'root',
 })
-export class ListOfDealsService {
+export class BrowseService {
   constructor(private http: HttpClient) {}
 
   public fetchListOfDeals(pageNumber?: string, sortBy?: string, desc?: string) {

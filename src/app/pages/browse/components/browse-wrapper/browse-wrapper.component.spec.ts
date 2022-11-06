@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListOfDealsWrapperComponent } from './list-of-deals-wrapper.component';
+import { ListOfDealsWrapperComponent } from './browse-wrapper.component';
 
 describe('ListOfDealsWrapperComponent', () => {
   let component: ListOfDealsWrapperComponent;
@@ -8,9 +8,8 @@ describe('ListOfDealsWrapperComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListOfDealsWrapperComponent ]
-    })
-    .compileComponents();
+      declarations: [ListOfDealsWrapperComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ListOfDealsWrapperComponent);
     component = fixture.componentInstance;

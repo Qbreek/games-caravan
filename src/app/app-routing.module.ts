@@ -2,13 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'list', pathMatch: 'full' },
+  { path: '', redirectTo: 'browse', pathMatch: 'full' },
   {
-    path: 'list',
+    path: 'browse',
     loadChildren: () =>
-      import('./pages/list-of-deals/list-of-deals.module').then(
-        (m) => m.ListOfDealsModule
-      ),
+      import('./pages/browse/browse.module').then((m) => m.BrowseModule),
   },
 ];
 

@@ -1,46 +1,41 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
-import { FilterState } from '../../models/filter-state.model';
+import { Filters } from '../../models/filters.model';
 import { ListOfDealsItem } from '../../models/list-of-deals-item.model';
-import { ListOfDealsService } from '../../services/list-of-deals.service';
+import { BrowseService } from '../../services/browse.service';
 
 @Component({
   selector: 'app-list-of-deals-wrapper',
-  templateUrl: './list-of-deals-wrapper.component.html',
-  styleUrls: ['./list-of-deals-wrapper.component.scss'],
+  templateUrl: './browse-wrapper.component.html',
+  styleUrls: ['./browse-wrapper.component.scss'],
 })
-export class ListOfDealsWrapperComponent implements OnInit, OnDestroy {
+export class BrowseWrapperComponent implements OnInit, OnDestroy {
   // TODO: add error handling
   public deals: ListOfDealsItem[] = [];
   public loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  public sortValueTemplate: string = 'Deals Rating';
-  public sortOrderTemplate: string = '';
   private page = 0;
   private destroy$: Subject<void> = new Subject();
 
   constructor(
-    private listOfDealsService: ListOfDealsService,
+    private browseService: BrowseService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
 
-  // sub to query params change and send GET calls wherever change is detected
+  // subscribing to query params, so we react on the changes and make the corresponding API calls
   ngOnInit() {
     this.activatedRoute.queryParams
       .pipe(takeUntil(this.destroy$))
       .subscribe((params) => {
         this.getListOfDeals(params['sortBy'], params['desc']);
-        this.sortValueTemplate = params['sortBy'] || 'Deal Rating';
-        this.sortOrderTemplate =
-          params['desc'] === '1' ? 'Descending' : 'Ascending';
       });
   }
 
   // call GET method and set loading to true so we can inform child components
   public getListOfDeals(sortBy: string, desc: string) {
     this.loading$.next(true);
-    this.listOfDealsService
+    this.browseService
       .fetchListOfDeals(this.page.toString(), sortBy, desc)
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
@@ -49,21 +44,21 @@ export class ListOfDealsWrapperComponent implements OnInit, OnDestroy {
       });
   }
 
-  // on table sort clear the deals array and reset page, so we can make the correct call to cheapshark
-  public onTableSort(value: FilterState) {
+  // on table sort clear the current array and reset page
+  public onFiltersApplied(e: Filters) {
     this.deals = [];
     this.page = 0;
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: {
-        sortBy: value.sortValue,
-        desc: Number(value.sortOrder), // cast the boolean to a number
+        sortBy: e.filters,
+        desc: e.order,
       },
       queryParamsHandling: 'merge',
     });
   }
 
-  // on load more increment the page number and fetch the next page from cheapshark using the persistent url query params
+  // on load more increment the page number and GET the next page from the API
   public onLoadMore() {
     this.page++;
     const sortBy =

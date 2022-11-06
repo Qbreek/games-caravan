@@ -2,44 +2,40 @@
   <thead>
     <tr>
       <th scope="col">
-        <div class="head-items-container" (click)="onTableSort('Title')">
-          <span>TITLE</span>
-        </div>
+        <span>TITLE</span>
       </th>
       <th>
-        <div class="head-items-container" (click)="onTableSort('Price')">
-          <span>PRICE</span>
-        </div>
+        <span>PRICE</span>
       </th>
       <th scope="col">
-        <div class="head-items-container" (click)="onTableSort('Reviews')">
-          <span>REVIEWS</span>
-        </div>
+        <span>REVIEWS</span>
       </th>
       <th scope="col">
-        <div class="head-items-container" (click)="onTableSort('Store')">
-          <span>STORE</span>
-        </div>
+        <span>STORE</span>
       </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let deal of deals">
+      <!-- TITTLE -->
       <td class="game-title-img-col">
         <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
           <img src="{{ deal.thumb }}" alt="{{ deal.title }} image" />
           <span>{{ deal.title }}</span>
         </a>
       </td>
+      <!-- PRICE -->
       <td class="price-col">
         <div>
           <del>{{ deal.normalPrice }}$</del>
           <span>{{ deal.salePrice }}$</span>
         </div>
       </td>
+      <!-- REVIEWS -->
       <td class="reviews-col" [ngClass]="styleReviewCol(+deal.steamRatingPercent)">
         {{ deal.steamRatingText || "No data" }}
       </td>
+      <!-- STORE -->
       <td class="store-icon-col">
         <span>
           <img src="https://www.cheapshark.com/img/stores/icons/{{ +deal.storeID - 1 }}.png" alt="store icon">

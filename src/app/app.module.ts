@@ -4,16 +4,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListOfDealsModule } from './pages/list-of-deals/list-of-deals.module';
+import { BrowseModule } from './pages/browse/browse.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ListOfDealsModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, BrowseModule],
   providers: [],
   bootstrap: [AppComponent],
 })
