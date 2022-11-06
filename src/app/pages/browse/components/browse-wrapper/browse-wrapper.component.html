@@ -1,9 +1,13 @@
 <div class="title-filters-wrapper">
-    <section>
-        <h1>List of deals</h1>
-        <p>Top deals found across the web</p>
-    </section>
-    <app-table-filters (filters)="onFiltersApplied($event)"></app-table-filters>
+  <section>
+    <h1>List of deals</h1>
+    <p>Top deals found across the web</p>
+  </section>
+  <app-table-filters (filters)="onFiltersApplied($event)"></app-table-filters>
 </div>
 <app-table [deals]="deals"></app-table>
-<app-load-more [isLoading$]="loading$" (loadMore)="onLoadMore()"></app-load-more>
+<app-load-more
+  [isLoading$]="loading$"
+  (loadMore)="onLoadMore()"
+></app-load-more>
+test
