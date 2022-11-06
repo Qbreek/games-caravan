@@ -1,43 +1,35 @@
 <form [formGroup]="filtersForm">
     <fieldset>
-        <div class="sortBy-order-wrapper">
-            <label for="filter-choices">Sort by </label>
-            <select formControlName="filters" id="filter-choices">
-                <option value="">Deal Rating</option>
-                <option value="title">Title</option>
-                <option value="price">Price</option>
-                <option value="reviews">Reviews</option>
-                <option value="store">Store</option>
-            </select>
-            <label for="order-choices">Order </label>
-            <select formControlName="order" id="order-choices">
-                <option value="0">Ascending</option>
-                <option value="1">Descending</option>
-            </select>
-        </div>
+        <label for="filter-choices">Sort by </label>
+        <select formControlName="filters" id="filter-choices">
+            <option value="">Deal Rating</option>
+            <option value="title">Title</option>
+            <option value="price">Price</option>
+            <option value="reviews">Reviews</option>
+            <option value="store">Store</option>
+        </select>
+        <label for="order-choices">Order </label>
+        <select formControlName="order" id="order-choices">
+            <option value="0">Ascending</option>
+            <option value="1">Descending</option>
+        </select>
+        <label for="game-title">Title</label>
+        <input type="text" id="game-title">
     </fieldset>
     <fieldset>
-        <div class="title-search-wrapper">
-            <label for="game-title">Title</label>
-            <input type="text" id="game-title">
-        </div>
-    </fieldset>
-    <fieldset>
-        <div class="special-checks-wrapper">
-            <label for="scales">AAA Only</label>
-            <input type="checkbox" id="scales" name="scales">
-            <label for="horns">Steamworks</label>
-            <input type="checkbox" id="horns" name="horns">
-            <label for="horns">On Sale</label>
-            <input type="checkbox" id="horns" name="horns">
-            <button>Stores</button>
-        </div>
+        <label for="scales">AAA Only</label>
+        <input type="checkbox" id="scales" name="scales">
+        <label for="horns">Steamworks</label>
+        <input type="checkbox" id="horns" name="horns">
+        <label for="horns">On Sale</label>
+        <input type="checkbox" id="horns" name="horns">
+        <button>Stores</button>
     </fieldset>
     <fieldset>
         <label for="price">Price range</label>
         <input type="range" name="price">
         <label for="rating">Steam rating</label>
         <input type="range" name="price">
+        <button type="button" (click)="filtersApplied()">Apply filters</button>
     </fieldset>
-    <button type="button" (click)="filtersApplied()">Apply</button>
 </form>
