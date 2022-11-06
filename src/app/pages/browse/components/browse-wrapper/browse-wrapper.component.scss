@@ -1,9 +1,8 @@
 .title-filters-wrapper {
-  display: flex;
-  justify-content: space-between;
-
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   section {
-    width: 80%;
+    width: 100%;
 
     h1 {
       text-transform: uppercase;
